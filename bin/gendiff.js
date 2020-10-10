@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import typeRefInfo from '../src/typeRefInfo.js';
+import genDiff from '../src/index.js';
 
-typeRefInfo();
+genDiff();
