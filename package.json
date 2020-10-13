@@ -2,7 +2,7 @@
   "name": "frontend-project-lvl2",
   "version": "1.0.0",
   "description": "![Actions Status](https://github.com/vchslv/frontend-project-lvl2/workflows/hexlet-check/badge.svg)",
-  "main": "src/index.js",
+  "main": "./lib/gendiff.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,6 +24,6 @@
   },
   "type": "module",
   "bin": {
-    "gendiff": "bin/gendiff.js"
+    "gendiff": "bin/index.js"
   }
 }
