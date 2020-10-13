@@ -1,5 +1,6 @@
 # frontend-project-lvl2
 
+[![Node CI](https://github.com/vchslv/frontend-project-lvl2/workflows/Node%20CI/badge.svg)](https://github.com/vchslv/frontend-project-lvl2/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/ce0b1909dd2c11550c0b/maintainability)](https://codeclimate.com/github/vchslv/frontend-project-lvl2/maintainability)
 
 ### Hexlet tests and linter status:
