@@ -4,3 +4,6 @@
 
 ### Hexlet tests and linter status:
 ![Actions Status](https://github.com/vchslv/frontend-project-lvl2/workflows/hexlet-check/badge.svg)
+
+### How the program works
+[![asciicast](https://asciinema.org/a/365105.svg)](https://asciinema.org/a/365105)
