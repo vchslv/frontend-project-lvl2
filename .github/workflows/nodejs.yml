@@ -33,3 +33,7 @@ jobs:
         # Run Linter
         run: |
           make lint
+      - name: Run test
+        # Run Jest
+        run: |
+          make test
