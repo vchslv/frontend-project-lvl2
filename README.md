@@ -11,3 +11,6 @@
 
 ### Comparison of YAML files
 [![asciicast](https://asciinema.org/a/365959.svg)](https://asciinema.org/a/365959)
+
+### Comparison of INI files
+[![asciicast](https://asciinema.org/a/365974.svg)](https://asciinema.org/a/365974)

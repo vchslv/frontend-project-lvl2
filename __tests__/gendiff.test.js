@@ -14,12 +14,16 @@ const __dirname = dirname(__filename);
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
-test('JSON file comparison. Paths are correct', () => {
+test('Result of JSON file comparison. Paths are correct', () => {
   expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'))).toBe(readFile('expected_file.json'));
 });
 
-test('YAML file comparison. Paths are correct', () => {
+test('Result of YAML file comparison. Paths are correct', () => {
   expect(genDiff(getFixturePath('file1.yml'), getFixturePath('file2.yml'))).toBe(readFile('expected_file.yml'));
+});
+
+test('Result of INI file comparison. Paths are correct', () => {
+  expect(genDiff(getFixturePath('file1.ini'), getFixturePath('file2.ini'))).toBe(readFile('expected_file.ini'));
 });
 
 test('File name or path error', () => {
