@@ -14,10 +14,22 @@ const __dirname = dirname(__filename);
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
-test('paths are correct', () => {
+test('JSON file comparison. Paths are correct', () => {
   expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'))).toBe(readFile('expected_file.json'));
 });
 
-test('paths are not correct', () => {
-  expect(genDiff(getFixturePath('file1.json'), getFixturePath(''))).toBe('File name or path error');
+test('YAML file comparison. Paths are correct', () => {
+  expect(genDiff(getFixturePath('file1.yml'), getFixturePath('file2.yml'))).toBe(readFile('expected_file.yml'));
+});
+
+test('File name or path error', () => {
+  expect(genDiff(getFixturePath('file1.json'), getFixturePath('file3.json'))).toBe('File name or path error');
+});
+
+test('File extensions don\'t match', () => {
+  expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.yml'))).toBe('File extensions should not be different');
+});
+
+test('Unknown file extensions', () => {
+  expect(genDiff(getFixturePath('file1.txt'), getFixturePath('file2.txt'))).toBe('Unknown file extensions');
 });

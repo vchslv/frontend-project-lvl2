@@ -6,5 +6,8 @@
 ### Hexlet tests and linter status:
 ![Actions Status](https://github.com/vchslv/frontend-project-lvl2/workflows/hexlet-check/badge.svg)
 
-### How the program works
+### Comparison of JSON files
 [![asciicast](https://asciinema.org/a/365105.svg)](https://asciinema.org/a/365105)
+
+### Comparison of YAML files
+[![asciicast](https://asciinema.org/a/365959.svg)](https://asciinema.org/a/365959)
