@@ -7,7 +7,7 @@
 ![Actions Status](https://github.com/vchslv/frontend-project-lvl2/workflows/hexlet-check/badge.svg)
 
 ### Comparison of JSON files
-[![asciicast](https://asciinema.org/a/365105.svg)](https://asciinema.org/a/365105)
+[![asciicast](https://asciinema.org/a/367667.svg)](https://asciinema.org/a/367667)
 
 ### Comparison of YAML files
 [![asciicast](https://asciinema.org/a/365959.svg)](https://asciinema.org/a/365959)
