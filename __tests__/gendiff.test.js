@@ -22,16 +22,20 @@ test('Result of INI file comparison. Paths are correct. Default formatter', () =
   expect(genDiff(getFixturePath('file1.ini'), getFixturePath('file2.ini'))).toBe(readFile('expected_file.ini'));
 });
 
-test('Result of JSON complex file comparison. Paths are correct. Default formatter', () => {
-  expect(genDiff(getFixturePath('file_complex1.json'), getFixturePath('file_complex2.json'))).toBe(readFile('expected_file_complex.json'));
+test('Result of JSON complex file comparison. Paths are correct. Formatter stylish', () => {
+  expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'))).toBe(readFile('expected_file_stylish.json'));
+});
+
+test('Result of JSON complex file comparison. Paths are correct. Formatter plain', () => {
+  expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'), 'plain')).toBe(readFile('expected_file_plain.json'));
 });
 
 test('Reaction to an error in specifying a path or file name', () => {
-  expect(genDiff(getFixturePath('file_complex1.json'), getFixturePath('file_complex3.json'))).toBe('File name or path error');
+  expect(genDiff(getFixturePath('file1.json'), getFixturePath('file3.json'))).toBe('File name or path error');
 });
 
 test('Reaction to mismatch of file extensions', () => {
-  expect(genDiff(getFixturePath('file_complex1.json'), getFixturePath('file_complex2.yml'))).toBe('File extensions should not be different');
+  expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.yml'))).toBe('File extensions should not be different');
 });
 
 test('Reaction to unknown file extensions', () => {
@@ -39,5 +43,5 @@ test('Reaction to unknown file extensions', () => {
 });
 
 test('Reaction to unknown formatter type', () => {
-  expect(genDiff(getFixturePath('file_complex1.json'), getFixturePath('file_complex2.json'), 'unknownFormatter')).toBe('Unknown formatter type');
+  expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'), 'unknownFormatter')).toBe('Unknown formatter type');
 });

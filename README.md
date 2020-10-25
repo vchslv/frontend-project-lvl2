@@ -6,11 +6,14 @@
 ### Hexlet tests and linter status:
 ![Actions Status](https://github.com/vchslv/frontend-project-lvl2/workflows/hexlet-check/badge.svg)
 
-### Comparison of JSON files
-[![asciicast](https://asciinema.org/a/367667.svg)](https://asciinema.org/a/367667)
-
 ### Comparison of YAML files
 [![asciicast](https://asciinema.org/a/365959.svg)](https://asciinema.org/a/365959)
 
 ### Comparison of INI files
 [![asciicast](https://asciinema.org/a/365974.svg)](https://asciinema.org/a/365974)
+
+### Comparison of JSON files with formatter stylish
+[![asciicast](https://asciinema.org/a/367667.svg)](https://asciinema.org/a/367667)
+
+### Comparison of JSON files with formatter plain
+[![asciicast](https://asciinema.org/a/367721.svg)](https://asciinema.org/a/367721)
