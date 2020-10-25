@@ -1,56 +1,56 @@
 [
   {
     "key": "common",
-    "type": "commonAndBothhasChildren",
+    "type": "commonAndBothHaveChild",
     "children": [
       {
         "key": "follow",
-        "type": "+",
+        "type": "added",
         "value": false
       },
       {
         "key": "setting1",
-        "type": " ",
+        "type": "common",
         "value": "Value 1"
       },
       {
         "key": "setting2",
-        "type": "-",
+        "type": "removed",
         "value": 200
       },
       {
         "key": "setting3",
-        "type": "difAndHasNotChild",
+        "type": "updatedAndHaveNotChild",
         "value1": true,
         "value2": null
       },
       {
         "key": "setting4",
-        "type": "+",
+        "type": "added",
         "value": "blah blah"
       },
       {
         "key": "setting5",
-        "type": "+hasChild",
+        "type": "addedAndhasChild",
         "children": [
           {
             "key": "key5",
-            "type": " ",
+            "type": "common",
             "value": "value5"
           }
         ]
       },
       {
         "key": "setting6",
-        "type": "commonAndBothhasChildren",
+        "type": "commonAndBothHaveChild",
         "children": [
           {
             "key": "doge",
-            "type": "commonAndBothhasChildren",
+            "type": "commonAndBothHaveChild",
             "children": [
               {
                 "key": "wow",
-                "type": "difAndHasNotChild",
+                "type": "updatedAndHaveNotChild",
                 "value1": "",
                 "value2": "so much"
               }
@@ -58,12 +58,12 @@
           },
           {
             "key": "key",
-            "type": " ",
+            "type": "common",
             "value": "value"
           },
           {
             "key": "ops",
-            "type": "+",
+            "type": "added",
             "value": "vops"
           }
         ]
@@ -72,26 +72,26 @@
   },
   {
     "key": "group1",
-    "type": "commonAndBothhasChildren",
+    "type": "commonAndBothHaveChild",
     "children": [
       {
         "key": "baz",
-        "type": "difAndHasNotChild",
+        "type": "updatedAndHaveNotChild",
         "value1": "bas",
         "value2": "bars"
       },
       {
         "key": "foo",
-        "type": " ",
+        "type": "common",
         "value": "bar"
       },
       {
         "key": "nest",
-        "type": "difAndObject1HasChild",
+        "type": "updatedAndObject1HasChild",
         "value1": [
           {
             "key": "key",
-            "type": " ",
+            "type": "common",
             "value": "value"
           }
         ],
@@ -101,11 +101,11 @@
   },
   {
     "key": "group2",
-    "type": "-hasChild",
+    "type": "removedAndhadChild",
     "children": [
       {
         "key": "abc",
-        "type": " ",
+        "type": "common",
         "value": 12345
       },
       {
@@ -114,7 +114,7 @@
         "children": [
           {
             "key": "id",
-            "type": " ",
+            "type": "common",
             "value": 45
           }
         ]
@@ -123,11 +123,11 @@
   },
   {
     "key": "group3",
-    "type": "+hasChild",
+    "type": "addedAndhasChild",
     "children": [
       {
         "key": "fee",
-        "type": " ",
+        "type": "common",
         "value": 100500
       },
       {
@@ -140,7 +140,7 @@
             "children": [
               {
                 "key": "number",
-                "type": " ",
+                "type": "common",
                 "value": 45
               }
             ]
