@@ -1,0 +1,152 @@
+[
+  {
+    "key": "common",
+    "type": "commonAndBothhasChildren",
+    "children": [
+      {
+        "key": "follow",
+        "type": "+",
+        "value": false
+      },
+      {
+        "key": "setting1",
+        "type": " ",
+        "value": "Value 1"
+      },
+      {
+        "key": "setting2",
+        "type": "-",
+        "value": 200
+      },
+      {
+        "key": "setting3",
+        "type": "difAndHasNotChild",
+        "value1": true,
+        "value2": null
+      },
+      {
+        "key": "setting4",
+        "type": "+",
+        "value": "blah blah"
+      },
+      {
+        "key": "setting5",
+        "type": "+hasChild",
+        "children": [
+          {
+            "key": "key5",
+            "type": " ",
+            "value": "value5"
+          }
+        ]
+      },
+      {
+        "key": "setting6",
+        "type": "commonAndBothhasChildren",
+        "children": [
+          {
+            "key": "doge",
+            "type": "commonAndBothhasChildren",
+            "children": [
+              {
+                "key": "wow",
+                "type": "difAndHasNotChild",
+                "value1": "",
+                "value2": "so much"
+              }
+            ]
+          },
+          {
+            "key": "key",
+            "type": " ",
+            "value": "value"
+          },
+          {
+            "key": "ops",
+            "type": "+",
+            "value": "vops"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "group1",
+    "type": "commonAndBothhasChildren",
+    "children": [
+      {
+        "key": "baz",
+        "type": "difAndHasNotChild",
+        "value1": "bas",
+        "value2": "bars"
+      },
+      {
+        "key": "foo",
+        "type": " ",
+        "value": "bar"
+      },
+      {
+        "key": "nest",
+        "type": "difAndObject1HasChild",
+        "value1": [
+          {
+            "key": "key",
+            "type": " ",
+            "value": "value"
+          }
+        ],
+        "value2": "str"
+      }
+    ]
+  },
+  {
+    "key": "group2",
+    "type": "-hasChild",
+    "children": [
+      {
+        "key": "abc",
+        "type": " ",
+        "value": 12345
+      },
+      {
+        "key": "deep",
+        "type": "nodeHasChild",
+        "children": [
+          {
+            "key": "id",
+            "type": " ",
+            "value": 45
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "group3",
+    "type": "+hasChild",
+    "children": [
+      {
+        "key": "fee",
+        "type": " ",
+        "value": 100500
+      },
+      {
+        "key": "deep",
+        "type": "nodeHasChild",
+        "children": [
+          {
+            "key": "id",
+            "type": "nodeHasChild",
+            "children": [
+              {
+                "key": "number",
+                "type": " ",
+                "value": 45
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

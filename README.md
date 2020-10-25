@@ -17,3 +17,6 @@
 
 ### Comparison of JSON files with formatter plain
 [![asciicast](https://asciinema.org/a/367721.svg)](https://asciinema.org/a/367721)
+
+### Comparison of JSON files with formatter json
+[![asciicast](https://asciinema.org/a/367746.svg)](https://asciinema.org/a/367746)

@@ -22,12 +22,16 @@ test('Result of INI file comparison. Paths are correct. Default formatter', () =
   expect(genDiff(getFixturePath('file1.ini'), getFixturePath('file2.ini'))).toBe(readFile('expected_file.ini'));
 });
 
-test('Result of JSON complex file comparison. Paths are correct. Formatter stylish', () => {
+test('Result of JSON file comparison. Paths are correct. Formatter stylish', () => {
   expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'))).toBe(readFile('expected_file_stylish.json'));
 });
 
-test('Result of JSON complex file comparison. Paths are correct. Formatter plain', () => {
+test('Result of JSON file comparison. Paths are correct. Formatter plain', () => {
   expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'), 'plain')).toBe(readFile('expected_file_plain.json'));
+});
+
+test('Result of JSON file comparison. Paths are correct. Formatter json', () => {
+  expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'), 'json')).toBe(readFile('expected_file_json.json'));
 });
 
 test('Reaction to an error in specifying a path or file name', () => {
