@@ -1,12 +1,9 @@
-import { createRequire } from 'module';
-import readAndParse from './src/parsers.js';
-import createInnerTree from './src/inner_tree.js';
-import formatOutputData from './src/formatters/index.js';
+import path from 'path';
+import readAndParse from './modules/parsers.js';
+import createInnerTree from './modules/inner_tree.js';
+import formatOutputData from './modules/formatters/index.js';
 
-const require = createRequire(import.meta.url);
-const path = require('path');
-
-const allowedExt = ['.json', '.yml', '.ini'];
+const allowedExt = ['.json', '.yml'];
 
 const formatters = ['stylish', 'plain', 'json'];
 
