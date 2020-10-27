@@ -6,6 +6,18 @@ This repository is a training project developed as part of the Hexlet project cu
 [![Maintainability](https://api.codeclimate.com/v1/badges/ce0b1909dd2c11550c0b/maintainability)](https://codeclimate.com/github/vchslv/frontend-project-lvl2/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/ce0b1909dd2c11550c0b/test_coverage)](https://codeclimate.com/github/vchslv/frontend-project-lvl2/test_coverage)
 
+## Setup
+
+```sh
+$ make install
+```
+
+## Run tests
+
+```sh
+$ make test
+```
+
 ## Using the package
 
 ### Comparison of YAML files with formatter stylish
@@ -19,15 +31,3 @@ This repository is a training project developed as part of the Hexlet project cu
 
 ### Comparison of JSON files with formatter json
 [![asciicast](https://asciinema.org/a/367746.svg)](https://asciinema.org/a/367746)
-
-## Setup
-
-```sh
-$ make install
-```
-
-## Run tests
-
-```sh
-$ make test
-```

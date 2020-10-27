@@ -9,22 +9,26 @@ const __dirname = dirname(__filename);
 const getFixturePath = (filename) => join(__dirname, '..', '__fixtures__', filename);
 const readFile = (filename) => readFileSync(getFixturePath(filename), 'utf-8').trim();
 
-const expectedFileStylishRead = readFile('expected_file_stylish.json');
-const expectedFilePlainRead = readFile('expected_file_plain.json');
-const expectedFileJsonRead = readFile('expected_file_json.json');
+const stylishResult = readFile('expected_file_stylish.json');
+const plainResult = readFile('expected_file_plain.json');
+const jsonResult = readFile('expected_file_json.json');
 
-test('Result of JSON file comparison. Paths are correct. Formatter stylish', () => {
-  expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'))).toBe(expectedFileStylishRead);
+test('Compares JSON files and formats in stylish', () => {
+  expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'))).toBe(stylishResult);
 });
 
-test('Result of YAML file comparison. Paths are correct. Formatter stylish', () => {
-  expect(genDiff(getFixturePath('file1.yml'), getFixturePath('file2.yml'))).toBe(expectedFileStylishRead);
+test('Compares YAML files and formats in stylish', () => {
+  expect(genDiff(getFixturePath('file1.yml'), getFixturePath('file2.yml'))).toBe(stylishResult);
 });
 
-test('Result of JSON file comparison. Paths are correct. Formatter plain', () => {
-  expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'), 'plain')).toBe(expectedFilePlainRead);
+test('Compares JSON files and formats in plain', () => {
+  expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'), 'plain')).toBe(plainResult);
 });
 
-test('Result of JSON file comparison. Paths are correct. Formatter json', () => {
-  expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'), 'json')).toBe(expectedFileJsonRead);
+test('Compares JSON files and formats in json', () => {
+  expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'), 'json')).toBe(jsonResult);
+});
+
+test('Compares JSON file and YAML file and formats in stylish', () => {
+  expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.yml'))).toBe(stylishResult);
 });

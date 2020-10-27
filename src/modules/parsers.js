@@ -1,21 +1,18 @@
-import fs from 'fs';
 import yaml from 'js-yaml';
 
-const readFile = (filePath) => fs.readFileSync(filePath, 'utf8');
+const parseJSON = (content) => JSON.parse(content);
 
-const readAndParseJSON = (filePath) => JSON.parse(readFile(filePath));
+const parseYML = (content) => yaml.safeLoad(content);
 
-const readAndParseYML = (filePath) => yaml.safeLoad(readFile(filePath));
-
-const readAndParse = (filePath, extOfFile) => {
-  switch (extOfFile) {
+const parseFile = (content, ext) => {
+  switch (ext) {
     case '.json':
-      return readAndParseJSON(filePath);
+      return parseJSON(content);
     case '.yml':
-      return readAndParseYML(filePath);
+      return parseYML(content);
     default:
-      throw new Error('Unknown file extensions');
+      throw new Error('Error of parsing');
   }
 };
 
-export default readAndParse;
+export default parseFile;
