@@ -11,7 +11,7 @@ const formatOutputData = (innerTree, formatterType) => {
     case 'json':
       return formatJSON(innerTree);
     default:
-      throw new Error(`Error when starting the formatter '${formatterType}'.`);
+      throw new Error(`Unknown formatter type '${formatterType}'.`);
   }
 };
 

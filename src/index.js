@@ -1,20 +1,22 @@
-import readFile from './modules/readers.js';
-import parseFile from './modules/parsers.js';
-import createInnerTree from './modules/inner_tree.js';
-import formatOutputData from './modules/formatters/index.js';
+import fs from 'fs';
+import path from 'path';
+import parseData from './parsers.js';
+import createInnerTree from './inner_tree.js';
+import formatOutputData from './formatters/index.js';
 
-const formatters = ['stylish', 'plain', 'json'];
+const getDataFromFile = (filePath) => fs.readFileSync(filePath, 'utf8');
 
-const isUnknownFormatter = (formatterType) => !formatters.includes(formatterType);
+const getData = (filePath) => {
+  const data = getDataFromFile(filePath);
+  const format = path.extname(filePath).slice(1);
+  return { data, format };
+};
 
 const genDiff = (filePath1, filePath2, formatterType = 'stylish') => {
-  if (isUnknownFormatter(formatterType)) {
-    throw new Error('Unknown formatter type');
-  }
-  const resultOfReadFile1 = readFile(filePath1);
-  const resultOfReadFile2 = readFile(filePath2);
-  const object1 = parseFile(resultOfReadFile1.content, resultOfReadFile1.ext);
-  const object2 = parseFile(resultOfReadFile2.content, resultOfReadFile2.ext);
+  const { data: dataOfFile1, format: formatOfFile1 } = getData(filePath1);
+  const { data: dataOfFile2, format: formatOfFile2 } = getData(filePath2);
+  const object1 = parseData(dataOfFile1, formatOfFile1);
+  const object2 = parseData(dataOfFile2, formatOfFile2);
   const internalTree = createInnerTree(object1, object2);
   return formatOutputData(internalTree, formatterType);
 };

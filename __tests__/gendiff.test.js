@@ -18,7 +18,7 @@ test('Compares JSON files and formats in stylish', () => {
 });
 
 test('Compares YAML files and formats in stylish', () => {
-  expect(genDiff(getFixturePath('file1.yml'), getFixturePath('file2.yml'))).toBe(stylishResult);
+  expect(genDiff(getFixturePath('file1.yml'), getFixturePath('file2.yaml'))).toBe(stylishResult);
 });
 
 test('Compares JSON files and formats in plain', () => {
@@ -30,5 +30,5 @@ test('Compares JSON files and formats in json', () => {
 });
 
 test('Compares JSON file and YAML file and formats in stylish', () => {
-  expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.yml'))).toBe(stylishResult);
+  expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.yaml'))).toBe(stylishResult);
 });
