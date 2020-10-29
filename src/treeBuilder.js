@@ -1,16 +1,9 @@
 import _ from 'lodash';
 
-const getKeysOfObjects = (object1, object2) => {
-  const keysOfObject1 = Object.keys(object1);
-  const keysOfObject2 = Object.keys(object2);
-  const keysOfObjects = _.uniq(keysOfObject1.concat(keysOfObject2)).sort();
-  return keysOfObjects;
-};
-
 const isValueObject = (object, key) => Object.prototype.toString.call(object[key]) === '[object Object]';
 
 const decomposeObject = (object) => {
-  const keysOfObject = Object.keys(object);
+  const keysOfObject = _.keys(object);
   const innerTree = keysOfObject.reduce((acc, key) => {
     const node = {};
     node.key = key;
@@ -28,7 +21,7 @@ const decomposeObject = (object) => {
 };
 
 const createInnerTree = (object1, object2) => {
-  const keysOfObjects = getKeysOfObjects(object1, object2);
+  const keysOfObjects = _.union(_.keys(object1), _.keys(object2)).sort();
   const innerTree = keysOfObjects.reduce((acc, key) => {
     const node = {};
     node.key = key;
@@ -46,7 +39,6 @@ const createInnerTree = (object1, object2) => {
       node.value2 = object2[key];
     } else if (_.has(object1, key) && _.has(object2, key) && (object1[key] !== object2[key])
     && !isValueObject(object1, key) && isValueObject(object2, key)) {
-      console.log('test2');
       node.type = 'updatedAndObject2HasChild';
       node.value1 = object1[key];
       node.value2 = decomposeObject(object2[key]);

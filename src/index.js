@@ -1,13 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 import parseData from './parsers.js';
-import createInnerTree from './inner_tree.js';
+import createInnerTree from './treeBuilder.js';
 import formatOutputData from './formatters/index.js';
 
-const getDataFromFile = (filePath) => fs.readFileSync(filePath, 'utf8');
-
 const getData = (filePath) => {
-  const data = getDataFromFile(filePath);
+  const data = fs.readFileSync(filePath, 'utf8');
   const format = path.extname(filePath).slice(1);
   return { data, format };
 };
