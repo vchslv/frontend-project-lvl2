@@ -1,69 +1,32 @@
 import _ from 'lodash';
 
-const isValueObject = (object, key) => Object.prototype.toString.call(object[key]) === '[object Object]';
-
-const decomposeObject = (object) => {
-  const keysOfObject = _.keys(object);
-  const innerTree = keysOfObject.reduce((acc, key) => {
-    const node = {};
-    node.key = key;
-    if (isValueObject(object, key)) {
-      node.type = 'nodeHasChild';
-      node.children = decomposeObject(object[key]);
-    } else {
-      node.type = 'common';
-      node.value = object[key];
-    }
-    acc.push(node);
-    return acc;
-  }, []);
-  return innerTree;
-};
-
-const createInnerTree = (object1, object2) => {
+const genInnerTree = (object1, object2) => {
   const keysOfObjects = _.union(_.keys(object1), _.keys(object2)).sort();
-  const innerTree = keysOfObjects.reduce((acc, key) => {
-    const node = {};
-    node.key = key;
-    if (_.has(object1, key) && _.has(object2, key) && isValueObject(object1, key)
-    && isValueObject(object2, key)) {
-      node.type = 'commonAndBothHaveChild';
-      node.children = createInnerTree(object1[key], object2[key]);
-    } else if (_.has(object1, key) && _.has(object2, key) && (object1[key] === object2[key])) {
-      node.type = 'common';
-      node.value = object1[key];
-    } else if (_.has(object1, key) && _.has(object2, key) && (object1[key] !== object2[key])
-    && isValueObject(object1, key) && !isValueObject(object2, key)) {
-      node.type = 'updatedAndObject1HasChild';
-      node.value1 = decomposeObject(object1[key]);
-      node.value2 = object2[key];
-    } else if (_.has(object1, key) && _.has(object2, key) && (object1[key] !== object2[key])
-    && !isValueObject(object1, key) && isValueObject(object2, key)) {
-      node.type = 'updatedAndObject2HasChild';
-      node.value1 = object1[key];
-      node.value2 = decomposeObject(object2[key]);
-    } else if (_.has(object1, key) && _.has(object2, key) && (object1[key] !== object2[key])
-    && !isValueObject(object1, key) && !isValueObject(object1, key)) {
-      node.type = 'updatedAndHaveNotChild';
-      node.value1 = object1[key];
-      node.value2 = object2[key];
-    } else if (_.has(object1, key) && !_.has(object2, key) && isValueObject(object1, key)) {
-      node.type = 'removedAndhadChild';
-      node.children = decomposeObject(object1[key]);
-    } else if (_.has(object1, key) && !_.has(object2, key) && !isValueObject(object1, key)) {
-      node.type = 'removed';
-      node.value = object1[key];
-    } else if (!_.has(object1, key) && _.has(object2, key) && isValueObject(object2, key)) {
-      node.type = 'addedAndhasChild';
-      node.children = decomposeObject(object2[key]);
-    } else if (!_.has(object1, key) && _.has(object2, key) && !isValueObject(object2, key)) {
-      node.type = 'added';
-      node.value = object2[key];
+  const innerTree = keysOfObjects.map((key) => {
+    // added, removed, nested, changed, unchanged
+    if (_.has(object1, key) && _.has(object2, key)) {
+      if (_.isObject(object1[key]) && _.isObject(object2[key])) {
+        const value = genInnerTree(object1[key], object2[key]);
+        return { type: 'nested', key, value };
+      }
+      if (object1[key] === object2[key]) {
+        return { type: 'unchanged', key, value: object1[key] };
+      }
+      if (object1[key] !== object2[key]) {
+        return {
+          type: 'changed', key, value1: object1[key], value2: object2[key],
+        };
+      }
     }
-    acc.push(node);
-    return acc;
-  }, []);
+    if (_.has(object1, key) && !_.has(object2, key)) {
+      return { type: 'removed', key, value: object1[key] };
+    }
+    if (!_.has(object1, key) && _.has(object2, key)) {
+      return { type: 'added', key, value: object2[key] };
+    }
+    throw new Error('Unknown tree builder error');
+  });
   return innerTree;
 };
 
-export default createInnerTree;
+export default genInnerTree;

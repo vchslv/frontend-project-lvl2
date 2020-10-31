@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import parseData from './parsers.js';
-import createInnerTree from './treeBuilder.js';
+import genInnerTree from './treeBuilder.js';
 import formatOutputData from './formatters/index.js';
 
 const getData = (filePath) => {
@@ -15,8 +15,8 @@ const genDiff = (filePath1, filePath2, formatterType = 'stylish') => {
   const { data: dataOfFile2, format: formatOfFile2 } = getData(filePath2);
   const object1 = parseData(dataOfFile1, formatOfFile1);
   const object2 = parseData(dataOfFile2, formatOfFile2);
-  const internalTree = createInnerTree(object1, object2);
-  return formatOutputData(internalTree, formatterType);
+  const innerTree = genInnerTree(object1, object2);
+  return formatOutputData(innerTree, formatterType);
 };
 
 export default genDiff;

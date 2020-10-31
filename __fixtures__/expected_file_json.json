@@ -1,69 +1,65 @@
 [
   {
+    "type": "nested",
     "key": "common",
-    "type": "commonAndBothHaveChild",
-    "children": [
+    "value": [
       {
-        "key": "follow",
         "type": "added",
+        "key": "follow",
         "value": false
       },
       {
+        "type": "unchanged",
         "key": "setting1",
-        "type": "common",
         "value": "Value 1"
       },
       {
-        "key": "setting2",
         "type": "removed",
+        "key": "setting2",
         "value": 200
       },
       {
+        "type": "changed",
         "key": "setting3",
-        "type": "updatedAndHaveNotChild",
         "value1": true,
         "value2": null
       },
       {
-        "key": "setting4",
         "type": "added",
+        "key": "setting4",
         "value": "blah blah"
       },
       {
+        "type": "added",
         "key": "setting5",
-        "type": "addedAndhasChild",
-        "children": [
-          {
-            "key": "key5",
-            "type": "common",
-            "value": "value5"
-          }
-        ]
+        "value": {
+          "key5": "value5"
+        }
       },
       {
+        "type": "nested",
         "key": "setting6",
-        "type": "commonAndBothHaveChild",
-        "children": [
+        "value": [
           {
+            "type": "nested",
             "key": "doge",
-            "type": "commonAndBothHaveChild",
-            "children": [
+            "value": [
               {
+                "type": "changed",
                 "key": "wow",
-                "type": "updatedAndHaveNotChild",
                 "value1": "",
                 "value2": "so much"
               }
             ]
           },
           {
+            "type": "unchanged",
             "key": "key",
-            "type": "common",
             "value": "value"
           },
           {
-            "key": "ops",
             "type": "added",
+            "key": "ops",
             "value": "vops"
           }
         ]
@@ -71,82 +67,50 @@
     ]
   },
   {
+    "type": "nested",
     "key": "group1",
-    "type": "commonAndBothHaveChild",
-    "children": [
+    "value": [
       {
+        "type": "changed",
         "key": "baz",
-        "type": "updatedAndHaveNotChild",
         "value1": "bas",
         "value2": "bars"
       },
       {
+        "type": "unchanged",
         "key": "foo",
-        "type": "common",
         "value": "bar"
       },
       {
+        "type": "changed",
         "key": "nest",
-        "type": "updatedAndObject1HasChild",
-        "value1": [
-          {
-            "key": "key",
-            "type": "common",
-            "value": "value"
-          }
-        ],
+        "value1": {
+          "key": "value"
+        },
         "value2": "str"
       }
     ]
   },
   {
+    "type": "removed",
     "key": "group2",
-    "type": "removedAndhadChild",
-    "children": [
-      {
-        "key": "abc",
-        "type": "common",
-        "value": 12345
-      },
-      {
-        "key": "deep",
-        "type": "nodeHasChild",
-        "children": [
-          {
-            "key": "id",
-            "type": "common",
-            "value": 45
-          }
-        ]
+    "value": {
+      "abc": 12345,
+      "deep": {
+        "id": 45
       }
-    ]
+    }
   },
   {
+    "type": "added",
     "key": "group3",
-    "type": "addedAndhasChild",
-    "children": [
-      {
-        "key": "fee",
-        "type": "common",
-        "value": 100500
-      },
-      {
-        "key": "deep",
-        "type": "nodeHasChild",
-        "children": [
-          {
-            "key": "id",
-            "type": "nodeHasChild",
-            "children": [
-              {
-                "key": "number",
-                "type": "common",
-                "value": 45
-              }
-            ]
-          }
-        ]
+    "value": {
+      "fee": 100500,
+      "deep": {
+        "id": {
+          "number": 45
+        }
       }
-    ]
+    }
   }
 ]
