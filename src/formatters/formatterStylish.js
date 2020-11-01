@@ -1,30 +1,32 @@
 import _ from 'lodash';
 
-const runFormatStylish = (innerTree, numberRepeatOfIndents) => {
-  const indentBefore = '  '.repeat(numberRepeatOfIndents);
-  const indentAfter = '  '.repeat(numberRepeatOfIndents - 1);
-  const indentForDecomposition = '  '.repeat(numberRepeatOfIndents + 1);
+const runFormatStylish = (innerTree, numberOfIndentRepetitions) => {
+  const indentBefore = '  '.repeat(numberOfIndentRepetitions);
+  const indentAfter = '  '.repeat(numberOfIndentRepetitions - 1);
+  const indentForDecomposition = '  '.repeat(numberOfIndentRepetitions + 1);
   const decomposeValue = (value) => {
     if (_.isObject(value)) {
       return JSON.stringify(value, null, '    ')
-        .replace(/"/g, '')
-        .replace(/,/g, '')
+        .replace(/[",]/g, '')
         .replace(/\n/g, `\n${indentForDecomposition}`);
     }
     return value;
   };
+
   const result = innerTree.map((node, index, array) => {
     const openCurlyBrace = (index === 0) ? '{\n' : '';
     const closeCurlyBrace = (index === (array.length - 1)) ? `\n${indentAfter}}` : '';
     if (node.type === 'nested') {
-      const string = runFormatStylish(node.value, numberRepeatOfIndents + 2);
-      return `${openCurlyBrace}${indentBefore}  ${node.key}: ${string}${closeCurlyBrace}`;
+      const stringForNestedValue = runFormatStylish(node.value, numberOfIndentRepetitions + 2);
+      return `${openCurlyBrace}${indentBefore}  ${node.key}: ${stringForNestedValue}${closeCurlyBrace}`;
     }
     if (node.type === 'unchanged') {
       return `${openCurlyBrace}${indentBefore}  ${node.key}: ${decomposeValue(node.value)}${closeCurlyBrace}`;
     }
     if (node.type === 'changed') {
-      return `${openCurlyBrace}${indentBefore}- ${node.key}: ${decomposeValue(node.value1)}\n${indentBefore}+ ${node.key}: ${decomposeValue(node.value2)}${closeCurlyBrace}`;
+      const stringForValue1 = `${indentBefore}- ${node.key}: ${decomposeValue(node.value1)}`;
+      const stringForValue2 = `${indentBefore}+ ${node.key}: ${decomposeValue(node.value2)}`;
+      return `${openCurlyBrace}${stringForValue1}\n${stringForValue2}${closeCurlyBrace}`;
     }
     if (node.type === 'removed') {
       return `${openCurlyBrace}${indentBefore}- ${node.key}: ${decomposeValue(node.value)}${closeCurlyBrace}`;
@@ -38,8 +40,8 @@ const runFormatStylish = (innerTree, numberRepeatOfIndents) => {
 };
 
 const formatToStylish = (innerTree) => {
-  const numberRepeatOfIndents = 1;
-  return runFormatStylish(innerTree, numberRepeatOfIndents);
+  const numberOfIndentRepetitions = 1;
+  return runFormatStylish(innerTree, numberOfIndentRepetitions);
 };
 
 export default formatToStylish;

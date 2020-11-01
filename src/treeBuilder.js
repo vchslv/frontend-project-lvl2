@@ -3,11 +3,10 @@ import _ from 'lodash';
 const genInnerTree = (object1, object2) => {
   const keysOfObjects = _.union(_.keys(object1), _.keys(object2)).sort();
   const innerTree = keysOfObjects.map((key) => {
-    // added, removed, nested, changed, unchanged
     if (_.has(object1, key) && _.has(object2, key)) {
       if (_.isObject(object1[key]) && _.isObject(object2[key])) {
-        const value = genInnerTree(object1[key], object2[key]);
-        return { type: 'nested', key, value };
+        const nestedValue = genInnerTree(object1[key], object2[key]);
+        return { type: 'nested', key, value: nestedValue };
       }
       if (object1[key] === object2[key]) {
         return { type: 'unchanged', key, value: object1[key] };
