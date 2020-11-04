@@ -3,8 +3,8 @@ import _ from 'lodash';
 const space = '  ';
 
 const runFormatStylish = (innerTree, spacesCount) => {
-  const indentBefore = space.repeat(spacesCount);
-  const indentAfter = space.repeat(spacesCount - 1);
+  const indentBeforeKey = space.repeat(spacesCount);
+  const indentBeforeCloseCurlyBrace = space.repeat(spacesCount - 1);
   const decomposeValue = (value) => {
     const indentForDecomposition = space.repeat(spacesCount + 1);
     if (_.isObject(value)) {
@@ -16,23 +16,23 @@ const runFormatStylish = (innerTree, spacesCount) => {
   };
   const result = innerTree.map((node, index, array) => {
     const openCurlyBrace = (index === 0) ? '{\n' : '';
-    const closeCurlyBrace = (index === (array.length - 1)) ? `\n${indentAfter}}` : '';
+    const closeCurlyBrace = (index === (array.length - 1)) ? `\n${indentBeforeCloseCurlyBrace}}` : '';
     if (node.type === 'nested') {
       const stringForNestedValue = runFormatStylish(node.value, spacesCount + 2);
-      return `${openCurlyBrace}${indentBefore}  ${node.key}: ${stringForNestedValue}${closeCurlyBrace}`;
+      return `${openCurlyBrace}${indentBeforeKey}  ${node.key}: ${stringForNestedValue}${closeCurlyBrace}`;
     }
     if (node.type === 'unchanged') {
-      return `${openCurlyBrace}${indentBefore}  ${node.key}: ${decomposeValue(node.value)}${closeCurlyBrace}`;
+      return `${openCurlyBrace}${indentBeforeKey}  ${node.key}: ${decomposeValue(node.value)}${closeCurlyBrace}`;
     }
     if (node.type === 'changed') {
-      const stringForValue1 = `${indentBefore}- ${node.key}: ${decomposeValue(node.value1)}`;
-      const stringForValue2 = `${indentBefore}+ ${node.key}: ${decomposeValue(node.value2)}`;
+      const stringForValue1 = `${indentBeforeKey}- ${node.key}: ${decomposeValue(node.value1)}`;
+      const stringForValue2 = `${indentBeforeKey}+ ${node.key}: ${decomposeValue(node.value2)}`;
       return `${openCurlyBrace}${stringForValue1}\n${stringForValue2}${closeCurlyBrace}`;
     }
     if (node.type === 'removed') {
-      return `${openCurlyBrace}${indentBefore}- ${node.key}: ${decomposeValue(node.value)}${closeCurlyBrace}`;
+      return `${openCurlyBrace}${indentBeforeKey}- ${node.key}: ${decomposeValue(node.value)}${closeCurlyBrace}`;
     }
-    return `${openCurlyBrace}${indentBefore}+ ${node.key}: ${decomposeValue(node.value)}${closeCurlyBrace}`;
+    return `${openCurlyBrace}${indentBeforeKey}+ ${node.key}: ${decomposeValue(node.value)}${closeCurlyBrace}`;
   });
   return result.join('\n');
 };
