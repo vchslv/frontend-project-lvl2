@@ -1,6 +1,5 @@
 import formatToStylish from './formatterStylish.js';
 import formatToPlain from './formatterPlain.js';
-import formatToJson from './formatterJson.js';
 
 const formatOutputData = (innerTree, formatterType) => {
   switch (formatterType) {
@@ -9,7 +8,7 @@ const formatOutputData = (innerTree, formatterType) => {
     case 'plain':
       return formatToPlain(innerTree);
     case 'json':
-      return formatToJson(innerTree);
+      return JSON.stringify(innerTree);
     default:
       throw new Error(`Unknown formatter type '${formatterType}'.`);
   }

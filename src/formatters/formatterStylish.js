@@ -1,10 +1,12 @@
 import _ from 'lodash';
 
-const runFormatStylish = (innerTree, numberOfIndentRepetitions) => {
-  const indentBefore = '  '.repeat(numberOfIndentRepetitions);
-  const indentAfter = '  '.repeat(numberOfIndentRepetitions - 1);
-  const indentForDecomposition = '  '.repeat(numberOfIndentRepetitions + 1);
+const space = '  ';
+
+const runFormatStylish = (innerTree, spacesCount) => {
+  const indentBefore = space.repeat(spacesCount);
+  const indentAfter = space.repeat(spacesCount - 1);
   const decomposeValue = (value) => {
+    const indentForDecomposition = space.repeat(spacesCount + 1);
     if (_.isObject(value)) {
       return JSON.stringify(value, null, '    ')
         .replace(/[",]/g, '')
@@ -12,12 +14,11 @@ const runFormatStylish = (innerTree, numberOfIndentRepetitions) => {
     }
     return value;
   };
-
   const result = innerTree.map((node, index, array) => {
     const openCurlyBrace = (index === 0) ? '{\n' : '';
     const closeCurlyBrace = (index === (array.length - 1)) ? `\n${indentAfter}}` : '';
     if (node.type === 'nested') {
-      const stringForNestedValue = runFormatStylish(node.value, numberOfIndentRepetitions + 2);
+      const stringForNestedValue = runFormatStylish(node.value, spacesCount + 2);
       return `${openCurlyBrace}${indentBefore}  ${node.key}: ${stringForNestedValue}${closeCurlyBrace}`;
     }
     if (node.type === 'unchanged') {
@@ -31,17 +32,13 @@ const runFormatStylish = (innerTree, numberOfIndentRepetitions) => {
     if (node.type === 'removed') {
       return `${openCurlyBrace}${indentBefore}- ${node.key}: ${decomposeValue(node.value)}${closeCurlyBrace}`;
     }
-    if (node.type === 'added') {
-      return `${openCurlyBrace}${indentBefore}+ ${node.key}: ${decomposeValue(node.value)}${closeCurlyBrace}`;
-    }
-    throw new Error('Unknown formatter stylish error');
+    return `${openCurlyBrace}${indentBefore}+ ${node.key}: ${decomposeValue(node.value)}${closeCurlyBrace}`;
   });
   return result.join('\n');
 };
 
-const formatToStylish = (innerTree) => {
-  const numberOfIndentRepetitions = 1;
-  return runFormatStylish(innerTree, numberOfIndentRepetitions);
-};
+const spacesCount = 1;
+
+const formatToStylish = (innerTree) => runFormatStylish(innerTree, spacesCount);
 
 export default formatToStylish;
