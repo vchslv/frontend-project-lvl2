@@ -3,11 +3,11 @@ import _ from 'lodash';
 const space = '  ';
 
 const stringify = (value, spacesCount) => {
-  const indentForDecomposition = space.repeat(spacesCount + 1);
+  const indent = space.repeat(spacesCount + 1);
   if (_.isObject(value)) {
     return JSON.stringify(value, null, '    ')
       .replace(/[",]/g, '')
-      .replace(/\n/g, `\n${indentForDecomposition}`);
+      .replace(/\n/g, `\n${indent}`);
   }
   return value;
 };
@@ -19,8 +19,8 @@ const iter = (innerTree, spacesCount) => {
     const openCurlyBrace = (index === 0) ? '{\n' : '';
     const closeCurlyBrace = (index === (array.length - 1)) ? `\n${indentBeforeCloseCurlyBrace}}` : '';
     if (node.type === 'nested') {
-      const stringForNestedValue = iter(node.children, spacesCount + 2);
-      return `${openCurlyBrace}${indentBeforeKey}  ${node.key}: ${stringForNestedValue}${closeCurlyBrace}`;
+      const stringChildren = iter(node.children, spacesCount + 2);
+      return `${openCurlyBrace}${indentBeforeKey}  ${node.key}: ${stringChildren}${closeCurlyBrace}`;
     }
     if (node.type === 'unchanged') {
       return `${openCurlyBrace}${indentBeforeKey}  ${node.key}: ${stringify(node.value, spacesCount)}${closeCurlyBrace}`;
