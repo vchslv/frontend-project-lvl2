@@ -18,7 +18,7 @@ const runFormatStylish = (innerTree, spacesCount) => {
     const openCurlyBrace = (index === 0) ? '{\n' : '';
     const closeCurlyBrace = (index === (array.length - 1)) ? `\n${indentBeforeCloseCurlyBrace}}` : '';
     if (node.type === 'nested') {
-      const stringForNestedValue = runFormatStylish(node.value, spacesCount + 2);
+      const stringForNestedValue = runFormatStylish(node.children, spacesCount + 2);
       return `${openCurlyBrace}${indentBeforeKey}  ${node.key}: ${stringForNestedValue}${closeCurlyBrace}`;
     }
     if (node.type === 'unchanged') {
