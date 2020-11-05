@@ -1,10 +1,8 @@
-import _ from 'lodash';
-
 const space = '  ';
 
 const stringify = (value, spacesCount) => {
   const indent = space.repeat(spacesCount + 1);
-  if (_.isObject(value)) {
+  if (typeof value === 'object') {
     return JSON.stringify(value, null, '    ')
       .replace(/[",]/g, '')
       .replace(/\n/g, `\n${indent}`);
