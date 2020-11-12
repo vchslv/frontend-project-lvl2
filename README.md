@@ -27,7 +27,7 @@ $ make test
 [![asciicast](https://asciinema.org/a/368354.svg)](https://asciinema.org/a/368354)
 
 ### Comparison of JSON files with formatter plain
-[![asciicast](https://asciinema.org/a/367721.svg)](https://asciinema.org/a/367721)
+[![asciicast](https://asciinema.org/a/372440.svg)](https://asciinema.org/a/372440)
 
 ### Comparison of JSON files with formatter json
-[![asciicast](https://asciinema.org/a/367746.svg)](https://asciinema.org/a/367746)
+[![asciicast](https://asciinema.org/a/372439.svg)](https://asciinema.org/a/372439)
