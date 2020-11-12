@@ -1,17 +1,17 @@
-const indentType = '  ';
+import _ from 'lodash';
 
-const indent = (depth) => indentType.repeat(depth);
+const indent = (depth) => '  '.repeat(depth);
 
-const stringify = (value, depth) => {
-  if (typeof value === 'object') {
-    return JSON.stringify(value, null, '    ')
-      .replace(/[",]/g, '')
-      .replace(/\n/g, `\n${indent(depth + 1)}`);
+const stringify = (nodeValue, depth) => {
+  if (_.isPlainObject(nodeValue)) {
+    const entries = Object.entries(nodeValue);
+    const result = entries.map(([key, value]) => (`${indent(depth + 2)}  ${key}: ${stringify(value, depth + 2)}`));
+    return `{\n${result.join('\n')}\n${indent(depth + 1)}}`;
   }
-  return value;
+  return nodeValue;
 };
 
-const iter = (innerTree, depth) => {
+const iter = (innerTree, depth = 1) => {
   const result = innerTree.map((node) => {
     if (node.type === 'nested') {
       const stringChildren = iter(node.children, depth + 2);
@@ -33,8 +33,6 @@ const iter = (innerTree, depth) => {
   return `{\n${result.join('\n')}\n${indent(depth - 1)}}`;
 };
 
-const depth = 1;
-
-const formatToStylish = (innerTree) => iter(innerTree, depth);
+const formatToStylish = (innerTree) => iter(innerTree);
 
 export default formatToStylish;
