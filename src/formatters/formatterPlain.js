@@ -25,9 +25,6 @@ const iter = (innerTree, path = '') => {
     if (node.type === 'added') {
       return `Property '${path}${node.key}' was added with value: ${stringify(node.value)}`;
     }
-    if (node.type === 'changed') {
-      return `Property '${path}${node.key}' was updated. From ${stringify(node.value1)} to ${stringify(node.value2)}`;
-    }
     return `Property '${path}${node.key}' was updated. From ${stringify(node.value1)} to ${stringify(node.value2)}`;
   });
   return result.join('\n');
