@@ -9,9 +9,9 @@ const __dirname = dirname(__filename);
 const getFixturePath = (filename) => join(__dirname, '..', '__fixtures__', filename);
 const readFile = (filename) => readFileSync(getFixturePath(filename), 'utf-8').trim();
 
-const stylishResult = readFile('expected_file_stylish');
-const plainResult = readFile('expected_file_plain');
-const jsonResult = readFile('expected_file_json');
+const stylishResult = readFile('expected_file_stylish.txt');
+const plainResult = readFile('expected_file_plain.txt');
+const jsonResult = readFile('expected_file_json.json');
 
 test('Compares JSON files and formats in stylish', () => {
   expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'))).toBe(stylishResult);
